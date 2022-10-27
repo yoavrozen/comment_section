@@ -17,12 +17,35 @@ class _CommentsPageState extends State<CommentsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome to Yoav's comment section"),
+        leading: Icon(Icons.chat),
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Welcome to Yoav's comment section",
+              style: TextStyle(fontSize: 17),
+            ),
+            SizedBox(height: 10),
+            Text(
+              "Pull-To-Refresh to load more comments",
+              style: TextStyle(fontSize: 14,),
+            ),
+          ],
+        ),
       ),
       body: Container(child: CommentsList()),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => context.go('/newcommentpage'),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+      floatingActionButton: Container(
+        height: 45,
+        width: 45,
+        child: FittedBox(
+          child: FloatingActionButton(
+            backgroundColor: Color.fromARGB(255, 0, 119, 216),
+            child: Icon(Icons.add),
+            onPressed: () => context.go('/newcommentpage'),
+          ),
+        ),
       ),
     );
   }
