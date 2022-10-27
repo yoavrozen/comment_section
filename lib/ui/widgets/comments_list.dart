@@ -22,19 +22,7 @@ class CommentsList extends ConsumerWidget {
                   child: Column(
                     children: [
                       Container(
-                        child: TextButton(
-                            onPressed: () {
-                              context.read(refreshesProvider).state = 0;
-                              context.read(indexProvider).state = 1;
-                              context.read(currentCommentsProvider).state =
-                                  [];
-                              return context.refresh(commentsProvider);
-                            },
-                            child: Text(
-                                "Press here to reset list to initial state")),
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.8,
+                        height: MediaQuery.of(context).size.height *0.84,
                         child: ListView.separated(
                           itemCount: data.length,
                           itemBuilder: (context, index) {
@@ -48,6 +36,17 @@ class CommentsList extends ConsumerWidget {
                             return SizedBox(height: 8);
                           },
                         ),
+                      ),
+                      Expanded(
+                        child: TextButton(
+                            onPressed: () {
+                              context.read(refreshesProvider).state = 0;
+                              context.read(indexProvider).state = 1;
+                              context.read(currentCommentsProvider).state = [];
+                              return context.refresh(commentsProvider);
+                            },
+                            child: Text(
+                                "Press here to reset list to initial state")),
                       ),
                     ],
                   ),
