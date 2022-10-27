@@ -35,17 +35,11 @@ class _CommentsPageState extends State<CommentsPage> {
         ),
       ),
       body: Container(child: CommentsList()),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
-      floatingActionButton: Container(
-        height: 45,
-        width: 45,
-        child: FittedBox(
-          child: FloatingActionButton(
-            backgroundColor: Color.fromARGB(255, 0, 119, 216),
-            child: Icon(Icons.add),
-            onPressed: () => context.go('/newcommentpage'),
-          ),
-        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 0, 119, 216),
+        child: Icon(Icons.add),
+        onPressed: () => context.go('/newcommentpage'),
       ),
     );
   }

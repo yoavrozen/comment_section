@@ -19,18 +19,37 @@ class CommentsList extends ConsumerWidget {
                     context.read(currentCommentsProvider).state = data;
                     return context.refresh(commentsProvider);
                   },
-                  child: ListView.separated(
-                    itemCount: data.length,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          commentContainerBuilder(data[index], context)
-                        ],
-                      );
-                    },
-                    separatorBuilder: (context, i) {
-                      return SizedBox(height: 8);
-                    },
+                  child: Column(
+                    children: [
+                      Container(
+                        child: TextButton(
+                            onPressed: () {
+                              context.read(refreshesProvider).state = 0;
+                              context.read(indexProvider).state = 1;
+                              context.read(currentCommentsProvider).state =
+                                  [];
+                              return context.refresh(commentsProvider);
+                            },
+                            child: Text(
+                                "Press here to reset list to initial state")),
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        child: ListView.separated(
+                          itemCount: data.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                commentContainerBuilder(data[index], context)
+                              ],
+                            );
+                          },
+                          separatorBuilder: (context, i) {
+                            return SizedBox(height: 8);
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
             loading: () => Center(child: CircularProgressIndicator()),
